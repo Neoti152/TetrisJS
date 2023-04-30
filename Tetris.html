@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Типа тетрис</title>
+    <style>
+        canvas {
+    margin: auto;
+    display: block;
+    width: 400px;
+    height: 800px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #00ff00;
+     border: 2px solid black;
+}
+
+    </style>
+
+</head>
+<body>
+<h1 align="center">Счет: <b id="score">0</b></h1>
+<canvas id="tetris"></canvas>
+<div align="center" style="font-size: 20px">Пробел - начать/пауза</div>
+<div align="center" style="font-size: 20px">Вниз - падение</div>
+<div align="center" style="font-size: 20px">Скорость каждые 2 ряда увеличивается (Счет кратный 2)</div>
+<script src="Tetris.js"></script>
+</body>
+</html>
