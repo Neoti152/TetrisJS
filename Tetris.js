@@ -23,7 +23,8 @@ let requestId;
 let positionX = 14;
 let delay = 0;
 
-let fig =  Math.floor(Math.random() * 4);
+//let fig =  Math.floor(Math.random() * 4);
+let fig = 0;
 let matrixFig;
 
 
@@ -115,17 +116,17 @@ hF = hFig - Math.abs(matrixFig[j]) - delta;
 matrixH[positionX+j]=y + hF;
 
 }
-//fillMatrix();
+fillMatrix();
 y=0;
 x = 140;
 positionX=14;
-fig =  Math.floor(Math.random() * 4);
+//fig =  Math.floor(Math.random() * 4);
 break;
 }
 }
 
 
-deleteIsFilled();
+deleteIsFilledMainMatrix();
 requestId = requestAnimationFrame(move);
 
 if (matrixH[positionX]==0){
@@ -181,7 +182,7 @@ function restart(){
 con.clearRect(0, 0, 300, 600);
 for (let i=0; i< matrixH.length; i++){
 matrixH[i]=endY;
-
+mainMatrix[i] = [];
 isMove = false;
 }
 }
