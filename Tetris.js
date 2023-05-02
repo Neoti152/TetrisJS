@@ -2,6 +2,9 @@ const script = document.createElement('script');
 script.src = './figur.js';
 document.body.appendChild(script);
 
+const script2 = document.createElement('script');
+script2.src = './Matrix.js';
+document.body.appendChild(script2);
 
 let can = document.getElementById('tetris');
 let con = can.getContext("2d");
@@ -112,6 +115,7 @@ hF = hFig - Math.abs(matrixFig[j]) - delta;
 matrixH[positionX+j]=y + hF;
 
 }
+//fillMatrix();
 y=0;
 x = 140;
 positionX=14;
@@ -124,12 +128,6 @@ break;
 deleteIsFilled();
 requestId = requestAnimationFrame(move);
 
-
-function check(){
-
-}
-
-
 if (matrixH[positionX]==0){
  alert("Игра окончена! Ваш счет: " + countScore);
  restart();
@@ -139,6 +137,7 @@ if (matrixH[positionX]==0){
  score.innerText= countScore;
  }
 daleyM();
+
 }
 
 
