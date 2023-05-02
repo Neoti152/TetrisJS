@@ -77,30 +77,3 @@ return 3;
 }
 
 
-function deltaH(n){
-switch (fig){
-case 0:
-return 20;
-
-case 1:
-return 10;
-
-case 2:
-return 40;
-
-case 3:{
-
- switch (n){
-    case 0:
-    return 10;
-    case 1:
-    return
- }
-
-}
-
-
-case 4:
-return 3;
-}
-}

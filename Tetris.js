@@ -58,13 +58,13 @@ clearDrawF();
 
 let maxH = matrixH[positionX];
 
-for (let i =1 ;  i<wFig/10; i++){
+for (let i =1 ;  i<matrixFig.length; i++){
 if (maxH > matrixH[positionX+i]){
 maxH = matrixH[positionX+i];
 }
 }
 
-y = maxH - hFig -10;
+y = maxH - hFig - 20;
 }
 else if(event.code == "Enter"){
 if (isMove){
@@ -103,7 +103,13 @@ if (y + h > matrixH[positionX+i]){
 let maxH = matrixH[positionX+i];
 
 for (let j =0 ;  j<matrixFig.length; j++){
-matrixH[positionX+j]=maxH - Math.abs(matrixFig[j]);
+let hF = 0;
+if (matrixFig[j] > 0){
+hF = -1 * delta;
+}else{
+hF = hFig - Math.abs(matrixFig[j]) - delta;
+}
+matrixH[positionX+j]=y + hF;
 
 }
 y=0;
