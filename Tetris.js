@@ -1,84 +1,134 @@
+const script = document.createElement('script');
+script.src = './figur.js';
+document.body.appendChild(script);
+
+
 let can = document.getElementById('tetris');
 let con = can.getContext("2d");
 
+
 let score = document.getElementById('score');
 let countScore = 0;
-//score.innerText= 125;
+
 
 let y =0;
-let endY = 145;
+let endY = 600;
 let delta = 1;
 let x = 140;
-let endX = 280;
+let endX = 300;
 let requestId;
-let positionX = 7;
-let delay = 50;
+let positionX = 14;
+let delay = 0;
 
-let matrixH = [endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY];
+let fig =  Math.floor(Math.random() * 4);
+let matrixFig;
+
+
+let matrixH = [endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY, endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY];
 let count = 0;
 let isMove = false;
 
 
 document.addEventListener("keydown", function(event){
 if (event.code == "ArrowLeft" & isMove){
-con.clearRect(x, y-delta, 20, 5);
+clearDrawF();
 if (x== 0){
 x=0;
 positionX = 0;
 }else{
 if (y<matrixH[positionX-1]){
-x-=20;
+x-=10;
 positionX--;
 }
 }
 }else if(event.code == "ArrowRight" & isMove){
-con.clearRect(x, y-delta, 20, 5);
-if (x== 280){
-positionX = 14;
-x=280;
+clearDrawF();
+if (x== 300-wFig){
+positionX = 30-(wFig/10);
+x=300-wFig;
 }else{
 if (y<matrixH[positionX+1]){
-x+=20;
+x+=10;
 positionX++;
 }
 }
 }
 else if(event.code == "ArrowDown" & isMove){
-con.clearRect(x, y-delta, 20, 5);
-y = matrixH[positionX];
+clearDrawF();
+
+let maxH = matrixH[positionX];
+
+for (let i =1 ;  i<wFig/10; i++){
+if (maxH > matrixH[positionX+i]){
+maxH = matrixH[positionX+i];
 }
-else if(event.code == "Space"){
-if (isMove){0
+}
+
+y = maxH - hFig -10;
+}
+else if(event.code == "Enter"){
+if (isMove){
 isMove = false;
 cancelAnimationFrame(requestId);
 }else{
 move();
 isMove = true;
 }
-}
+}else if(event.code == "Space" & isMove){
+clearDrawF();
+fig = change();
+
+ }
 });
 
 
 function move(){
-con.clearRect(x, y-delta, 20, 5);
+
+clearDrawF();
 //con.fillStyle ="#ff0000";
-con.fillRect(x, y, 20, 5);
+drawF();
 
 y += delta;
-if(y>matrixH[positionX]){
+
+
+for (let i =0 ;  i<matrixFig.length; i++){
+let h = 0;
+if (matrixFig[i] > 0){
+h = matrixFig[i];
+}else{
+h = hFig;
+}
+
+if (y + h > matrixH[positionX+i]){
+let maxH = matrixH[positionX+i];
+
+for (let j =0 ;  j<matrixFig.length; j++){
+matrixH[positionX+j]=maxH - Math.abs(matrixFig[j]);
+
+}
 y=0;
 x = 140;
-matrixH[positionX]-=5;
-positionX=7;
+positionX=14;
+fig =  Math.floor(Math.random() * 4);
+break;
 }
+}
+
 
 deleteIsFilled();
 requestId = requestAnimationFrame(move);
 
+
+function check(){
+
+}
+
+
 if (matrixH[positionX]==0){
+ alert("Игра окончена! Ваш счет: " + countScore);
  restart();
  cancelAnimationFrame(requestId);
- alert("Игра окончена! Ваш счет: " + countScore);
+
  countScore = 0;
  score.innerText= countScore;
  }
@@ -114,16 +164,16 @@ delay-=10;
 
 
 function reDraw(){
-con.clearRect(0, 0, 400, 800);
+con.clearRect(0, 0, 300, 600);
 for (let i=0; i< matrixH.length; i++){
-matrixH[i]+=5;
-con.fillRect(i*20, matrixH[i]+5, 20, endY-matrixH[i]);
+matrixH[i]+=20;
+con.fillRect(i*20, matrixH[i]+20, 20, endY-matrixH[i]);
 }
 }
 
 
 function restart(){
-con.clearRect(0, 0, 400, 800);
+con.clearRect(0, 0, 300, 600);
 for (let i=0; i< matrixH.length; i++){
 matrixH[i]=endY;
 

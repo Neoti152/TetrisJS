@@ -7,8 +7,7 @@
         canvas {
     margin: auto;
     display: block;
-    width: 400px;
-    height: 800px;
+
     top: 0;
     bottom: 0;
     left: 0;
@@ -22,8 +21,9 @@
 </head>
 <body>
 <h1 align="center">Счет: <b id="score">0</b></h1>
-<canvas id="tetris"></canvas>
-<div align="center" style="font-size: 20px">Пробел - начать/пауза</div>
+<canvas width="300px" height="600px" id="tetris"></canvas>
+<div align="center" style="font-size: 20px">Enter - начать/пауза</div>
+<div align="center" style="font-size: 20px">Пробел - поворот</div>
 <div align="center" style="font-size: 20px">Вниз - падение</div>
 <div align="center" style="font-size: 20px">Скорость каждые 2 ряда увеличивается (Счет кратный 2)</div>
 <script src="Tetris.js"></script>
