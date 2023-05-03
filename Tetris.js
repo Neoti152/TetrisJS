@@ -40,10 +40,26 @@ if (x== 0){
 x=0;
 positionX = 0;
 }else{
-if (y<matrixH[positionX-1]){
+
+for (let i =0 ;  i<matrixFig.length; i++){
+let h1 = 0;
+let h2 = 0;
+if (matrixFig[i] > 0){
+h1 = y;
+}else{
+h1 = y + hFig - Math.abs(matrixFig[i]);
+}
+h2 = h1+matrixFig[i];
+
+for (let j =h1/10 ;  j<h2/10; j++){
+if(mainMatrix[positionX-1 + i][59-j] ===1)
+return;
+}
+}
 x-=10;
 positionX--;
-}
+
+
 }
 }else if(event.code == "ArrowRight" & isMove){
 clearDrawF();
@@ -51,10 +67,24 @@ if (x== 300-wFig){
 positionX = 30-(wFig/10);
 x=300-wFig;
 }else{
-if (y<matrixH[positionX+1]){
+for (let i =matrixFig.length-1 ;  i>=0; i--){
+let h1 = 0;
+let h2 = 0;
+if (matrixFig[i] > 0){
+h1 = y;
+}else{
+h1 = y + hFig - Math.abs(matrixFig[i]);
+}
+h2 = h1+matrixFig[i];
+
+for (let j =h1/10 ;  j<h2/10; j++){
+if(mainMatrix[positionX+1 + i][59-j] ==1)
+return;
+}
+}
 x+=10;
 positionX++;
-}
+
 }
 }
 else if(event.code == "ArrowDown" & isMove){
@@ -103,7 +133,9 @@ h = matrixFig[i];
 h = hFig;
 }
 
-if (y + h > matrixH[positionX+i]){
+if (mainMatrix[positionX+i][59-(y + h)/10] == 1 || y == endY - h ){
+
+/*
 let maxH = matrixH[positionX+i];
 
 for (let j =0 ;  j<matrixFig.length; j++){
@@ -116,6 +148,7 @@ hF = hFig - Math.abs(matrixFig[j]) - delta;
 matrixH[positionX+j]=y + hF;
 
 }
+*/
 fillMatrix();
 y=0;
 x = 140;
@@ -151,31 +184,8 @@ do{
 }
 
 
-function deleteIsFilled(){
-let count = 0;
-for (let i=0; i< matrixH.length; i++){
-if (matrixH[i] < endY){
-count+=1;
-}
-}
-if(count == matrixH.length){
-reDraw();
-countScore+=1;
-score.innerText= countScore;
-if (countScore%2 ==0){
-delay-=10;
-}
-}
-}
 
 
-function reDraw(){
-con.clearRect(0, 0, 300, 600);
-for (let i=0; i< matrixH.length; i++){
-matrixH[i]+=20;
-con.fillRect(i*20, matrixH[i]+20, 20, endY-matrixH[i]);
-}
-}
 
 
 function restart(){

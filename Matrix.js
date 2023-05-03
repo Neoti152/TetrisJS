@@ -50,8 +50,9 @@ function deleteRow(row){
 for (let i=0; i< 30; i++){
 for (let j=row+1; j< mainMatrix[i].length; j++){
 mainMatrix[i][j-1]=mainMatrix[i][j];
-matrixH[i]+=10;
+
 }
+matrixH[i]+=10;
 mainMatrix[i][mainMatrix[i].length-1]=0;
 }
 }
