@@ -6,9 +6,9 @@ for (let i =0 ;  i<matrixFig.length; i++){
 let h1 = 0;
 let h2 = 0;
 if (matrixFig[i] > 0){
-h1 = y - delta;
+h1 = y;
 }else{
-h1 = y -delta + hFig - Math.abs(matrixFig[i]);
+h1 = y + hFig - Math.abs(matrixFig[i]);
 }
 h2 = h1+matrixFig[i];
 

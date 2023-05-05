@@ -26,11 +26,13 @@ let delay = 0;
 //let fig =  Math.floor(Math.random() * 4);
 let fig = 0;
 let matrixFig;
-
+let wFig;
+let hFig;
 
 let matrixH = [endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY, endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY];
 let count = 0;
 let isMove = false;
+let isDown = false;
 
 
 document.addEventListener("keydown", function(event){
@@ -89,16 +91,25 @@ positionX++;
 }
 else if(event.code == "ArrowDown" & isMove){
 clearDrawF();
+let maxH = endY;
+for (let i =0 ;  i<matrixFig.length; i++){
 
-let maxH = matrixH[positionX];
 
-for (let i =1 ;  i<matrixFig.length; i++){
-if (maxH > matrixH[positionX+i]){
-maxH = matrixH[positionX+i];
+for (let j = Math.floor((y+hFig)/10) ;  j<60; j++){
+if (mainMatrix[positionX + i][59-j] == 1 || j == 59){
+let tempH = j*10;
+alert(tempH);
+break;
 }
 }
-
+if (maxH > tempH){
+maxH = tempH;
+alert(maxH);
+}
+}
+isDown = true;
 y = maxH - hFig - 20;
+
 }
 else if(event.code == "Enter"){
 if (isMove){
@@ -120,11 +131,11 @@ function move(){
 
 clearDrawF();
 //con.fillStyle ="#ff0000";
-drawF();
 
 y += delta;
+drawF();
 
-
+if (y%10 == 0){
 for (let i =0 ;  i<matrixFig.length; i++){
 let h = 0;
 if (matrixFig[i] > 0){
@@ -133,7 +144,7 @@ h = matrixFig[i];
 h = hFig;
 }
 
-if (mainMatrix[positionX+i][59-(y + h)/10] == 1 || y == endY - h ){
+if (mainMatrix[positionX+i][59-((y + h)/10) ] == 1 || y+hFig >= endY){
 
 /*
 let maxH = matrixH[positionX+i];
@@ -150,19 +161,20 @@ matrixH[positionX+j]=y + hF;
 }
 */
 fillMatrix();
-y=0;
+y=-delta;
 x = 140;
 positionX=14;
+isDown = false;
 //fig =  Math.floor(Math.random() * 4);
 break;
 }
 }
-
+}
 
 deleteIsFilledMainMatrix();
 requestId = requestAnimationFrame(move);
 
-if (matrixH[positionX]==0){
+if (mainMatrix[positionX][59]==1){
  alert("Игра окончена! Ваш счет: " + countScore);
  restart();
  cancelAnimationFrame(requestId);

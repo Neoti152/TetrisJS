@@ -39,20 +39,20 @@ break;
 function clearDrawF(){
 switch (fig){
 case 0:
-con.clearRect(x, y-delta, 20 , 20);
+con.clearRect(x, y, 20 , 20);
 break;
 case 1:
-con.clearRect(x, y-delta, 40 , 10);
+con.clearRect(x, y, 40 , 10);
 break;
 case 2:
-con.clearRect(x, y-delta, 10 , 40);
+con.clearRect(x, y, 10 , 40);
 case 3:
-con.clearRect(x, y-delta, 20 , 10);
-con.clearRect(x+10, y-delta+10, 20 , 10);
+con.clearRect(x, y, 20 , 10);
+con.clearRect(x+10, y+10, 20 , 10);
 break;
 case 4:
-con.clearRect(x+10, y-delta, 10 , 20);
-con.clearRect(x, y-delta+10, 10 , 20);
+con.clearRect(x+10, y, 10 , 20);
+con.clearRect(x, y+10, 10 , 20);
 break;
 }
 }
