@@ -48,9 +48,9 @@ let h2 = 0;
 if (matrixFig[i] > 0){
 h1 = y;
 }else{
-h1 = y + hFig - Math.abs(matrixFig[i]);
+h1 = y + hFig + matrixFig[i];
 }
-h2 = h1+matrixFig[i];
+h2 = h1+ Math.abs(matrixFig[i]);
 
 for (let j = Math.floor(h1/10) ;  j< Math.floor(h2/10); j++){
 if(mainMatrix[positionX-1 + i][59-j] ==1)
@@ -74,9 +74,9 @@ let h2 = 0;
 if (matrixFig[i] > 0){
 h1 = y;
 }else{
-h1 = y + hFig - Math.abs(matrixFig[i]);
+h1 = y + hFig + matrixFig[i];
 }
-h2 = h1+matrixFig[i];
+h2 = h1+ Math.abs(matrixFig[i]);
 
 for (let j = Math.floor(h1/10) ;  j<Math.floor(h2/10); j++){
 if(mainMatrix[positionX+1 + i][59-j] ==1)
@@ -106,9 +106,11 @@ maxH = tempH;
 
 }
 }
-isDown = true;
-y = maxH - hFig - 20;
 
+if (y < maxH - hFig - 20){
+y = maxH - hFig - 20;
+isDown = true;
+}
 }
 else if(event.code == "Enter"){
 if (isMove){
@@ -119,9 +121,21 @@ move();
 isMove = true;
 }
 }else if(event.code == "Space" & isMove){
+let nextWidth = nextFigWidth();
+let canFlag = true;
+if (nextWidth > wFig){
+for (let i = x+wFig; i< x + nextWidth; i+=10 ){
+if (mainMatrix[i/10][59-Math.floor((y+hFig)/10)] == 1){
+canFlag = false;
+break;
+}
+}
+}
+
+if (x<= 300-nextWidth && canFlag){
 clearDrawF();
 change();
-
+}
  }
 });
 

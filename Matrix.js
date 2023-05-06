@@ -40,7 +40,7 @@ i++;
 if (c>0){
 reDrawMainMatrix();
 score.innerText= countScore;
-if (countScore%2 ==0){
+if (countScore%5 ==0){
 delay-=10;
 }
 }

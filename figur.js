@@ -102,3 +102,21 @@ break;
 }
 
 
+function nextFigWidth(){
+switch (fig){
+case 0:
+return 20;
+
+case 1:
+return 10;
+case 2:
+return 40;
+
+case 3:
+return 20;
+
+case 4:
+return 30;
+
+}
+}
