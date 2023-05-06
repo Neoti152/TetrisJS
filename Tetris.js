@@ -23,13 +23,12 @@ let requestId;
 let positionX = 14;
 let delay = 0;
 
-//let fig =  Math.floor(Math.random() * 4);
-let fig = 0;
+let fig =  Math.floor(Math.random() * 4);
 let matrixFig;
 let wFig;
 let hFig;
 
-let matrixH = [endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY, endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY];
+//let matrixH = [endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY, endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY];
 let count = 0;
 let isMove = false;
 let isDown = false;
@@ -53,8 +52,8 @@ h1 = y + hFig - Math.abs(matrixFig[i]);
 }
 h2 = h1+matrixFig[i];
 
-for (let j =h1/10 ;  j<h2/10; j++){
-if(mainMatrix[positionX-1 + i][59-j] ===1)
+for (let j = Math.floor(h1/10) ;  j< Math.floor(h2/10); j++){
+if(mainMatrix[positionX-1 + i][59-j] ==1)
 return;
 }
 }
@@ -79,7 +78,7 @@ h1 = y + hFig - Math.abs(matrixFig[i]);
 }
 h2 = h1+matrixFig[i];
 
-for (let j =h1/10 ;  j<h2/10; j++){
+for (let j = Math.floor(h1/10) ;  j<Math.floor(h2/10); j++){
 if(mainMatrix[positionX+1 + i][59-j] ==1)
 return;
 }
@@ -89,22 +88,22 @@ positionX++;
 
 }
 }
-else if(event.code == "ArrowDown" & isMove){
+else if(event.code == "ArrowDown" & isMove & !isDown){
 clearDrawF();
 let maxH = endY;
 for (let i =0 ;  i<matrixFig.length; i++){
 
-
+let tempH =0;
 for (let j = Math.floor((y+hFig)/10) ;  j<60; j++){
 if (mainMatrix[positionX + i][59-j] == 1 || j == 59){
-let tempH = j*10;
-alert(tempH);
+tempH = j*10;
+
 break;
 }
 }
 if (maxH > tempH){
 maxH = tempH;
-alert(maxH);
+
 }
 }
 isDown = true;
@@ -121,7 +120,7 @@ isMove = true;
 }
 }else if(event.code == "Space" & isMove){
 clearDrawF();
-fig = change();
+change();
 
  }
 });
@@ -146,39 +145,26 @@ h = hFig;
 
 if (mainMatrix[positionX+i][59-((y + h)/10) ] == 1 || y+hFig >= endY){
 
-/*
-let maxH = matrixH[positionX+i];
-
-for (let j =0 ;  j<matrixFig.length; j++){
-let hF = 0;
-if (matrixFig[j] > 0){
-hF = -1 * delta;
-}else{
-hF = hFig - Math.abs(matrixFig[j]) - delta;
-}
-matrixH[positionX+j]=y + hF;
-
-}
-*/
 fillMatrix();
+deleteIsFilledMainMatrix();
 y=-delta;
 x = 140;
 positionX=14;
 isDown = false;
-//fig =  Math.floor(Math.random() * 4);
+fig =  Math.floor(Math.random() * 4);
 break;
 }
 }
 }
 
-deleteIsFilledMainMatrix();
+
 requestId = requestAnimationFrame(move);
 
 if (mainMatrix[positionX][59]==1){
  alert("Игра окончена! Ваш счет: " + countScore);
- restart();
- cancelAnimationFrame(requestId);
 
+ cancelAnimationFrame(requestId);
+ restart();
  countScore = 0;
  score.innerText= countScore;
  }
@@ -202,8 +188,8 @@ do{
 
 function restart(){
 con.clearRect(0, 0, 300, 600);
-for (let i=0; i< matrixH.length; i++){
-matrixH[i]=endY;
+for (let i=0; i< mainMatrix.length; i++){
+//matrixH[i]=endY;
 mainMatrix[i] = [];
 isMove = false;
 }

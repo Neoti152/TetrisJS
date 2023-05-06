@@ -8,11 +8,11 @@ let h2 = 0;
 if (matrixFig[i] > 0){
 h1 = y;
 }else{
-h1 = y + hFig - Math.abs(matrixFig[i]);
+h1 = y + hFig + matrixFig[i];
 }
-h2 = h1+matrixFig[i];
+h2 = h1+ Math.abs(matrixFig[i]);
 
-for (let j =h1/10 ;  j<h2/10; j++){
+for (let j = Math.floor(h1/10) ;  j< Math.floor(h2/10); j++){
 mainMatrix[positionX + i][59-j] =1;
 }
 }
@@ -29,6 +29,7 @@ count+=1;
 }
 }
 if(count == mainMatrix.length){
+
 deleteRow(i);
 countScore+=1;
 c++;
@@ -46,13 +47,16 @@ delay-=10;
 }
 
 
+
+
+
 function deleteRow(row){
 for (let i=0; i< 30; i++){
 for (let j=row+1; j< mainMatrix[i].length; j++){
 mainMatrix[i][j-1]=mainMatrix[i][j];
 
 }
-matrixH[i]+=10;
+//matrixH[i]+=10;
 mainMatrix[i][mainMatrix[i].length-1]=0;
 }
 }
