@@ -63,6 +63,30 @@ con.fillRect(x, y+20,  20, 10);
 initialFig(fig);
 break;
 }
+case 11:{
+con.fillRect(x, y+10,  20, 10);
+con.fillRect(x+20, y,  10, 20);
+initialFig(fig);
+break;
+}
+case 12:{
+con.fillRect(x, y,  10, 20);
+con.fillRect(x, y+20,  20, 10);
+initialFig(fig);
+break;
+}
+case 13:{
+con.fillRect(x, y,  10, 20);
+con.fillRect(x+10, y,  20, 10);
+initialFig(fig);
+break;
+}
+case 14:{
+con.fillRect(x, y,  20, 10);
+con.fillRect(x+10, y+10,  10, 20);
+initialFig(fig);
+break;
+}
 }
 }
 
@@ -119,6 +143,26 @@ break;
 case 10:{
 con.clearRect(x+10, y,  10, 20);
 con.clearRect(x, y+20,  20, 10);
+break;
+}
+case 11:{
+con.clearRect(x, y+10,  20, 10);
+con.clearRect(x+20, y,  10, 20);
+break;
+}
+case 12:{
+con.clearRect(x, y,  10, 20);
+con.clearRect(x, y+20,  20, 10);
+break;
+}
+case 13:{
+con.clearRect(x, y,  10, 20);
+con.clearRect(x+10, y,  20, 10);
+break;
+}
+case 14:{
+con.clearRect(x, y,  20, 10);
+con.clearRect(x+10, y+10,  10, 20);
 break;
 }
 }
@@ -178,6 +222,26 @@ break;
 }
 case 10:{
 fig = 7;
+initialFig(fig);
+break;
+}
+case 11:{
+fig = 12;
+initialFig(fig);
+break;
+}
+case 12:{
+fig = 13;
+initialFig(fig);
+break;
+}
+case 13:{
+fig = 14;
+initialFig(fig);
+break;
+}
+case 14:{
+fig = 11;
 initialFig(fig);
 break;
 }
@@ -253,6 +317,30 @@ wFig=20;
 hFig=30;
 break;
 }
+case 11:{
+matrixFig = [-10, -10, 20];
+wFig=30;
+hFig=20;
+break;
+}
+case 12:{
+matrixFig = [30, -10];
+wFig=20;
+hFig=30;
+break;
+}
+case 13:{
+matrixFig = [20, 10, 10];
+wFig=30;
+hFig=20;
+break;
+}
+case 14:{
+matrixFig = [10, 30];
+wFig=20;
+hFig=30;
+break;
+}
 }
 }
 
@@ -290,6 +378,18 @@ case 9:
 return 20;
 
 case 10:
+return 30;
+
+case 11:
+return 20;
+
+case 12:
+return 30;
+
+case 13:
+return 20;
+
+case 14:
 return 30;
 }
 }
