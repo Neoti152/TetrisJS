@@ -23,7 +23,7 @@ let requestId;
 let positionX = 14;
 let delay = 0;
 
-let fig =  Math.floor(Math.random() * 4);
+let fig =  Math.floor(Math.random() * 10);
 let matrixFig;
 let wFig;
 let hFig;
@@ -165,7 +165,7 @@ y=-delta;
 x = 140;
 positionX=14;
 isDown = false;
-fig =  Math.floor(Math.random() * 4);
+fig =  Math.floor(Math.random() * 10);
 break;
 }
 }
