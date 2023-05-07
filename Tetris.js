@@ -21,7 +21,7 @@ let x = 140;
 let endX = 300;
 let requestId;
 let positionX = 14;
-let delay = 0;
+let delay = 40;
 
 let fig =  Math.floor(Math.random() * 18);
 
