@@ -23,8 +23,8 @@ let requestId;
 let positionX = 14;
 let delay = 0;
 
-//let fig =  Math.floor(Math.random() * 18);
-let fig =  15;
+let fig =  Math.floor(Math.random() * 18);
+
 let matrixFig;
 let wFig;
 let hFig;
@@ -56,7 +56,7 @@ h2 = h1+ Math.abs(matrixFig[i]);
 h1 = y + 10;
 h2 = h1+ 10;
 }
-for (let j = Math.floor(h1/10) ;  j< Math.floor(h2/10); j++){
+for (let j = Math.floor(h2/10) ;  j>= Math.floor(h1/10); j--){
 if(mainMatrix[positionX-1 + i][59-j] ==1)
 return;
 }
@@ -85,7 +85,7 @@ h2 = h1+ Math.abs(matrixFig[i]);
 h1 = y + 10;
 h2 = h1+ 10;
 }
-for (let j = Math.floor(h1/10) ;  j<Math.floor(h2/10); j++){
+for (let j = Math.floor(h2/10) ;  j>=Math.floor(h1/10); j--){
 if(mainMatrix[positionX+1 + i][59-j] ==1)
 return;
 }
@@ -114,8 +114,8 @@ maxH = tempH;
 }
 }
 
-if (y < maxH - hFig - 20){
-y = maxH - hFig - 20;
+if (y < maxH - hFig - 15){
+y = maxH - hFig - 15;
 isDown = true;
 }
 }
@@ -174,8 +174,8 @@ y=-delta;
 x = 140;
 positionX=14;
 isDown = false;
-//fig =  Math.floor(Math.random() * 18);
-fig = 16;
+fig =  Math.floor(Math.random() * 18);
+
 break;
 }
 }

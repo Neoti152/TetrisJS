@@ -43,8 +43,16 @@ i++;
 if (c>0){
 reDrawMainMatrix();
 score.innerText= countScore;
-if (countScore%5 ==0){
+if (countScore%3 ==0){
+if (delay == 0){
+if (delay == 5){
+delta = 5;
+}else{
+delta ++;
+}
+} else{
 delay-=10;
+}
 }
 }
 }
