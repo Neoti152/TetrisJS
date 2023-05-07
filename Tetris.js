@@ -29,7 +29,7 @@ let matrixFig;
 let wFig;
 let hFig;
 
-
+let isTrace = false;
 let count = 0;
 let isMove = false;
 let isDown = false;
@@ -38,6 +38,9 @@ let isDown = false;
 document.addEventListener("keydown", function(event){
 if (event.code == "ArrowLeft" & isMove){
 clearDrawF();
+if(isTrace){
+ clearTrace();
+ }
 if (x== 0){
 x=0;
 positionX = 0;
@@ -68,6 +71,9 @@ positionX--;
 }
 }else if(event.code == "ArrowRight" & isMove){
 clearDrawF();
+if(isTrace){
+ clearTrace();
+ }
 if (x== 300-wFig){
 positionX = 30-(wFig/10);
 x=300-wFig;
@@ -97,6 +103,9 @@ positionX++;
 }
 else if(event.code == "ArrowDown" & isMove & !isDown){
 clearDrawF();
+if(isTrace){
+ clearTrace();
+ }
 let maxH = endY;
 for (let i =0 ;  i<matrixFig.length; i++){
 
@@ -128,6 +137,9 @@ move();
 isMove = true;
 }
 }else if(event.code == "Space" & isMove){
+if(isTrace){
+ clearTrace();
+ }
 let nextWidth = nextFigWidth();
 let canFlag = true;
 if (nextWidth > wFig){
@@ -144,6 +156,14 @@ clearDrawF();
 change();
 }
  }
+ else if(event.code == "ShiftLeft" & isMove){
+if (!isTrace){
+isTrace = true;
+}else{
+clearTrace();
+isTrace = false;
+}
+  }
 });
 
 
@@ -152,8 +172,16 @@ function move(){
 clearDrawF();
 //con.fillStyle ="#ff0000";
 
+if(isTrace){
+clearTrace();
+}
+
 y += delta;
 drawF();
+
+if(isTrace){
+drawTrace();
+}
 
 if (y%10 == 0){
 for (let i =0 ;  i<matrixFig.length; i++){
@@ -167,7 +195,6 @@ h = 20;
 }
 
 if (mainMatrix[positionX+i][59-((y + h)/10) ] == 1 || y+hFig >= endY){
-
 fillMatrix();
 deleteIsFilledMainMatrix();
 y=-delta;
@@ -206,10 +233,6 @@ do{
 }
 
 
-
-
-
-
 function restart(){
 delay = 40;
 delta = 1;
@@ -218,7 +241,59 @@ for (let i=0; i< mainMatrix.length; i++){
 
 mainMatrix[i] = [];
 isMove = false;
+isTrace = false;
+isDown = false;
 }
 }
 
 
+function drawTrace(){
+
+if (y+hFig== endY){
+return;
+}
+let h = 0;
+if (matrixFig[0] > 0){
+h = matrixFig[0];
+}else if (matrixFig[0] < 0){
+h = hFig;
+} else{
+h = 20;
+}
+let h2 = h;
+for (let i = Math.floor((y+h)/10); i <60; i++ ){
+if (mainMatrix[positionX][59-i] == 1){
+h2 = i*10;
+break;
+}
+else if (mainMatrix[positionX][0] != 1 && i == 59){
+h2= endY;
+}
+}
+con.fillRect(x, y+h,  1, h2-(y+h));
+}
+
+function clearTrace(){
+if (y+hFig== endY){
+return;
+}
+let h = 0;
+if (matrixFig[0] > 0){
+h = matrixFig[0];
+}else if (matrixFig[0] < 0){
+h = hFig;
+} else{
+h = 20;
+}
+let h2 = h;
+for (let i = Math.floor((y+h)/10); i <60; i++ ){
+if (mainMatrix[positionX][59-i] == 1){
+h2 = i*10;
+break;
+}
+else if (mainMatrix[positionX][0] != 1 && i == 59){
+h2= endY;
+}
+}
+con.clearRect(x, y+h,  1, h2-(y+h));
+}
