@@ -23,7 +23,8 @@ let requestId;
 let positionX = 14;
 let delay = 0;
 
-let fig =  Math.floor(Math.random() * 14);
+//let fig =  Math.floor(Math.random() * 18);
+let fig =  15;
 let matrixFig;
 let wFig;
 let hFig;
@@ -47,11 +48,14 @@ let h1 = 0;
 let h2 = 0;
 if (matrixFig[i] > 0){
 h1 = y;
-}else{
-h1 = y + hFig + matrixFig[i];
-}
 h2 = h1+ Math.abs(matrixFig[i]);
-
+}else if(matrixFig[i] < 0){
+h1 = y + hFig + matrixFig[i];
+h2 = h1+ Math.abs(matrixFig[i]);
+} else{
+h1 = y + 10;
+h2 = h1+ 10;
+}
 for (let j = Math.floor(h1/10) ;  j< Math.floor(h2/10); j++){
 if(mainMatrix[positionX-1 + i][59-j] ==1)
 return;
@@ -73,11 +77,14 @@ let h1 = 0;
 let h2 = 0;
 if (matrixFig[i] > 0){
 h1 = y;
-}else{
-h1 = y + hFig + matrixFig[i];
-}
 h2 = h1+ Math.abs(matrixFig[i]);
-
+}else if(matrixFig[i] < 0){
+h1 = y + hFig + matrixFig[i];
+h2 = h1+ Math.abs(matrixFig[i]);
+}else{
+h1 = y + 10;
+h2 = h1+ 10;
+}
 for (let j = Math.floor(h1/10) ;  j<Math.floor(h2/10); j++){
 if(mainMatrix[positionX+1 + i][59-j] ==1)
 return;
@@ -153,8 +160,10 @@ for (let i =0 ;  i<matrixFig.length; i++){
 let h = 0;
 if (matrixFig[i] > 0){
 h = matrixFig[i];
-}else{
+}else if (matrixFig[i] < 0){
 h = hFig;
+} else{
+h = 10;
 }
 
 if (mainMatrix[positionX+i][59-((y + h)/10) ] == 1 || y+hFig >= endY){
@@ -165,7 +174,8 @@ y=-delta;
 x = 140;
 positionX=14;
 isDown = false;
-fig =  Math.floor(Math.random() * 14);
+//fig =  Math.floor(Math.random() * 18);
+fig = 16;
 break;
 }
 }

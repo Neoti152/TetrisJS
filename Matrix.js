@@ -7,11 +7,14 @@ let h1 = 0;
 let h2 = 0;
 if (matrixFig[i] > 0){
 h1 = y;
-}else{
-h1 = y + hFig + matrixFig[i];
-}
 h2 = h1+ Math.abs(matrixFig[i]);
-
+}else if (matrixFig[i] < 0){
+h1 = y + hFig + matrixFig[i];
+h2 = h1+ Math.abs(matrixFig[i]);
+} else {
+h1 = y + 10;
+h2 = h1+ 10;
+}
 for (let j = Math.floor(h1/10) ;  j< Math.floor(h2/10); j++){
 mainMatrix[positionX + i][59-j] =1;
 }
