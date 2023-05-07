@@ -45,10 +45,15 @@ reDrawMainMatrix();
 score.innerText= countScore;
 if (countScore%3 ==0){
 if (delay == 0){
-if (delay == 5){
+switch (delta){
+case 1:{
+delta = 2;
+break;
+}
+case 2:{
 delta = 5;
-}else{
-delta ++;
+break;
+}
 }
 } else{
 delay-=10;
@@ -67,7 +72,6 @@ for (let j=row+1; j< mainMatrix[i].length; j++){
 mainMatrix[i][j-1]=mainMatrix[i][j];
 
 }
-//matrixH[i]+=10;
 mainMatrix[i][mainMatrix[i].length-1]=0;
 }
 }

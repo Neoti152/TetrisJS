@@ -13,10 +13,10 @@ let con = can.getContext("2d");
 let score = document.getElementById('score');
 let countScore = 0;
 
-
-let y =0;
-let endY = 600;
 let delta = 1;
+
+let y =-delta;
+let endY = 600;
 let x = 140;
 let endX = 300;
 let requestId;
@@ -29,7 +29,7 @@ let matrixFig;
 let wFig;
 let hFig;
 
-//let matrixH = [endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY, endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY,endY];
+
 let count = 0;
 let isMove = false;
 let isDown = false;
@@ -114,8 +114,8 @@ maxH = tempH;
 }
 }
 
-if (y < maxH - hFig - 15){
-y = maxH - hFig - 15;
+if (y <= maxH - hFig - delta*3){
+y = maxH - hFig - delta*3;
 isDown = true;
 }
 }
@@ -163,7 +163,7 @@ h = matrixFig[i];
 }else if (matrixFig[i] < 0){
 h = hFig;
 } else{
-h = 10;
+h = 20;
 }
 
 if (mainMatrix[positionX+i][59-((y + h)/10) ] == 1 || y+hFig >= endY){
@@ -211,13 +211,14 @@ do{
 
 
 function restart(){
+delay = 40;
+delta = 1;
 con.clearRect(0, 0, 300, 600);
 for (let i=0; i< mainMatrix.length; i++){
-//matrixH[i]=endY;
+
 mainMatrix[i] = [];
 isMove = false;
 }
 }
 
 
-//setInterval(move, 15);
