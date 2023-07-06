@@ -60,6 +60,53 @@ traceOnOff();
   }
 });
 
+let isTouchCapable = 'ontouchstart' in window;
+if(isTouchCapable){
+let initialPoint;
+let finalPoint;
+can.addEventListener('touchstart', () => {
+event.preventDefault();
+
+initialPoint=event.changedTouches[0];
+if (event.changedTouches.length == 2){
+beginOrPause();
+}
+if (event.changedTouches.length == 3 & isMove){
+traceOnOff();
+}
+}
+});
+
+can.addEventListener('touchend', () => {
+event.preventDefault();
+
+finalPoint=event.changedTouches[0];
+
+if(xAbs > 10 && yAbs > 10){
+if (xAbs > yAbs) {
+if (finalPoint.pageX < initialPoint.pageX){
+moveLeft();
+
+}
+else{
+moveRight();
+}
+else {
+if (finalPoint.pageY < initialPoint.pageY & isMove){
+//up
+rotate();
+}
+else{
+moveDown();
+}
+}
+}
+});
+
+}
+
+
+
 
 function move(){
 
